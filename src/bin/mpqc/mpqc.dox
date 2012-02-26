@@ -1,0 +1,37 @@
+
+/** \page mpqc
+
+The Massively Parallel Quantum Chemistry program (MPQC) computes the
+properties of molecules from first principles.
+
+This documentation is divided into the following chapters:
+
+\if html
+<ul>
+  <li> \ref mpqcover
+  <li> \ref mpqccomp
+  <li> \ref mpqcrunning
+  <li> \ref mpqcinp
+  <li> \ref mpqcval
+  <li> \ref mpqcpsi
+  <li> \ref mpqccomponents
+  <li> \ref mpqclic
+  <li> \ref mpqcwar
+</ul>
+\endif
+
+\if man
+<ul>
+  <li> \ref mpqcover
+  <li> \ref mpqcrunning
+  <li> \ref mpqcinp
+  <li> \ref mpqcval
+  <li> \ref mpqcpsi
+  <li> \ref mpqccomponents
+  <li> \ref mpqclic
+  <li> \ref mpqcwar
+</ul>
+<br>
+\endif
+
+*/

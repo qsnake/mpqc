@@ -1,0 +1,114 @@
+/** \page mpqcval Validating MPQC
+
+ After you compile MPQC, you should run the validation suite.
+You should also run the validation suite if you upgrade your operating
+system software, since this could change shared libraries that are linking
+with MPQC and could affect the results.
+Note that the reference validation suite has not been verified
+relative to an independent code, except for a few spot checks.  If you find
+that MPQC doesn't produce the same answer as another quantum chemistry
+program that you trust, then please promptly notify us and send all the
+details.
+
+ The top-level Makefile has several targets that can be used to check
+an MPQC build.  MPQC must be built before one of these targets is used:
+<dl>
+  <dt><tt>check</tt><dd>The same as <tt>check0</tt> below.  This
+                        is only available from the top-level directory
+                        and <tt>src/bin/mpqc/validate</tt>.
+  <dt><tt>check0</tt><dd>Run the smallest MPQC verification suite.
+                        It tests basic functionality.  This
+                        is only available from the top-level directory
+                        and <tt>src/bin/mpqc/validate</tt>.
+  <dt><tt>check1</tt><dd>Run the intermediate MPQC verification suite.
+                        It runs most of the tests, only leaving out
+                        very expensive runs.  This
+                        is only available from the top-level directory
+                        and <tt>src/bin/mpqc/validate</tt>.
+  <dt><tt>check2</tt><dd>Run the complete MPQC verification suite.
+                        Depending on the compilation and runtime
+                        environment, tests that are not expected
+                        to work will be omitted.  This
+                        is only available from the top-level directory
+                        and <tt>src/bin/mpqc/validate</tt>.
+  <dt><tt>check_clean</tt><dd>Remove MPQC verification suite output files.
+                        This is only available from the top-level directory
+                        and <tt>src/bin/mpqc/validate</tt>.
+  <dt><tt>testbuild</tt><dd>Verify that a variety of small test programs
+                        compile.  If static libraries are used, this
+                        will require a substantial amount of disk space.
+  <dt><tt>testrun</tt><dd>Run a variety of small test programs.  This
+                        will build them if necessary.
+</dl>
+
+The check targets will run mpqc with the mpqcrun (see \ref mpqcrun)
+command.  You can give arguments to mpqcrun by setting
+the <tt>MPQCRUN_ARGS</tt> variable on the make command line.
+
+The verification suite is in <tt>src/bin/mpqc/validate</tt>.  After running
+it, the output files can be found in <tt>src/bin/mpqc/validate/run</tt>.
+The check targets will compare outputs that your build produced to
+the reference files in <tt>src/bin/mpqc/validate/ref</tt>.  The input files
+can be found with the reference files.
+For each comparison, first the status (<tt>ok</tt>,
+<tt>missing</tt>, or <tt>failed</tt>) for each file is printed.  If both
+statuses are <tt>ok</tt> then an <tt>E:</tt> is printed followed by the
+number of digits to which the energies agree.  If they agree to all digits
+<tt>99</tt> is printed.  If a gradient was computed, then <tt>Grad:</tt> is
+printed followed by the number of digits to which the gradients in least
+agreement agree.  Other properties checked in this way include frequencies,
+diagnostics, and populations.
+
+  If two numbers do not agree to the expected accuracy, then an asterisk,
+<tt>*</tt>, is printed after the number of digits in agreement.
+
+  Finally, you can do a detailed comparison of the contents of the
+<tt>ref</tt> and <tt>run</tt> subdirectories by typing <tt>make diff</tt>.
+
+The input files in the verification suite are divided into several categories:
+<dl>
+  <dt><tt>h2o</tt><dd>These are simple tests that exercise many of MPQC's
+        features.
+
+  <dt><tt>h2omp2</tt><dd>Tests that further exercise MP2.
+
+  <dt><tt>h2ofrq</tt><dd>Tests of H<sub>2</sub>O frequencies with a variety
+        of methods.
+
+  <dt><tt>mbpt</tt><dd>These tests exercise MP2 as well as the open-shell
+        perturbation theory methods.  The various available
+        algorithms are tested as well.
+
+  <dt><tt>ckpt</tt><dd>Tests the checkpoint and restart capabilities.
+
+  <dt><tt>symm1</tt><dd>Tests of point group symmetry.
+
+  <dt><tt>symm2</tt><dd>More point group symmetry tests.  These use basis
+        sets with higher angular momentum than #symm1#.
+
+  <dt><tt>symm3</tt><dd>Tests automatic point group determination.
+
+  <dt><tt>basis1</tt><dd>A variety of basis sets are tested for first row
+        atoms along with hydrogen and helium.
+
+  <dt><tt>basis2</tt><dd>Basis sets test for second row atoms.
+
+  <dt><tt>methods</tt><dd>Basic tests of several of MPQC's methods.
+
+  <dt><tt>clscf</tt><dd>More tests of methods based on CLSCF.
+
+  <dt><tt>hsosscf</tt><dd>More tests of methods based on HSOSSCF.
+
+  <dt><tt>uscf</tt><dd>More tests of methods based on UnrestrictedSCF.
+
+  <dt><tt>dft</tt><dd>More tests of the CLKS method.
+
+  <dt><tt>mp2r12</tt><dd>More tests of MP2-R12.
+
+  <dt><tt>ccaintv3</tt><dd>Tests of embedded CCA integrals components using <tt>intv3</tt>.
+
+  <dt><tt>ccacints</tt><dd>Tests of embedded CCA integrals components using <tt>cints</tt>.
+
+</dl>
+
+*/

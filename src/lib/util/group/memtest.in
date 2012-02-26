@@ -1,0 +1,15 @@
+% Emacs should use -*- KeyVal -*- mode.
+
+debug<Debugger>:(
+  )
+
+procmessage<ProcMessageGrp>: ()
+
+shmmessage<ShmMessageGrp>: (
+  n = 2
+  )
+
+mpimessage<MPIMessageGrp>: (
+  )
+
+message = $:procmessage
